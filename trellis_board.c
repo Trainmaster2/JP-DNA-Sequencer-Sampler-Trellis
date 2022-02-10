@@ -72,14 +72,10 @@ void TrellisBoard_Delete(struct TrellisBoard* board)
 }
 void TrellisBoard_Init(struct TrellisBoard* board)
 {
-	static uint8_t i2cInitialized = 0;
 	if (board != NULL)
 	{
-		if (i2cInitialized == 0)
-		{
-			/* Put I2C initialization here if desired */
-			i2cInitialized = 1;
-		}
+		// Initialize I2C
+		__TrellisBoard_I2CInit();
 
 		// Turn on oscillator
 		__TrellisBoard_TX(board->index, 0b00100001, NULL, 0);
@@ -192,6 +188,15 @@ void TrellisBoard_SetBrightness(struct TrellisBoard* board, uint8_t brighness)
 }
 
 // Private Functions
+void __TrellisBoard_I2CInit()
+{
+	static uint8_t i2cInitialized = 0;
+	if (i2cInitialized == 0)
+	{
+		/* Put I2C initialization here if desired */
+		i2cInitialized = 1;
+	}
+}
 void __TrellisBoard_TX(uint8_t boardIndex, uint8_t command, uint8_t* data, uint8_t dataLen)
 {
 	if (boardIndex < 0 || boardIndex > 7)

@@ -34,6 +34,7 @@ void TrellisBoard_SetBlinking(struct TrellisBoard* board, uint8_t freq); // Only
 void TrellisBoard_SetBrightness(struct TrellisBoard* board, uint8_t brighness); // Only accepts 1-16 (rounds if out of bounds)
 
 // Private Functions
+void __TrellisBoard_I2CInit();
 void __TrellisBoard_TX(uint8_t boardIndex, uint8_t command, uint8_t* data, uint8_t dataLen);
 void __TrellisBoard_RX(uint8_t boardIndex, uint8_t command, uint8_t* buffer, uint8_t bufferLen);
 
