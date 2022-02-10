@@ -158,12 +158,12 @@ uint32_t __Collate_Bitfields(uint16_t field1, uint16_t field2)
 	// Currently set up to assume boards are side-by-side
 	combinedField |= field1 & 0xF;
 	combinedField |= (field2 & 0xF) << 4;
-	combinedField |= field1 & 0xF0;
-	combinedField |= (field2 & 0xF0) << 4;
-	combinedField |= field1 & 0xF00;
-	combinedField |= (field2 & 0xF00) << 4;
-	combinedField |= field1 & 0xF000;
-	combinedField |= (field2 & 0xF000) << 4;
+	combinedField |= (field1 & 0xF0) << 4;
+	combinedField |= (field2 & 0xF0) << 8;
+	combinedField |= (field1 & 0xF00) << 8;
+	combinedField |= (field2 & 0xF00) << 12;
+	combinedField |= (field1 & 0xF000) << 12;
+	combinedField |= (field2 & 0xF000) << 16;
 	return combinedField;
 }
 void __Separate_Bitfields(uint32_t combinedField, uint16_t* field1, uint16_t* field2)
