@@ -105,10 +105,10 @@ uint32_t TrellisSet_ReadBtns(struct TrellisSet* set)
 	{
 		TrellisBoard_ReadBtns(set->board1);
 		TrellisBoard_ReadBtns(set->board2);
+		set->prevBtns = set->btns;
 		set->btns = __Collate_Bitfields(set->board1->btns, set->board2->btns);
-		set->prevBtns = __Collate_Bitfields(set->board1->prevBtns, set->board2->prevBtns);
-		set->newBtns = __Collate_Bitfields(set->board1->newBtns, set->board2->newBtns);
-		set->oldBtns = __Collate_Bitfields(set->board1->oldBtns, set->board2->oldBtns);
+		set->newBtns = set->btns & ~(set->prevBtns);
+		set->oldBtns = set->btns & set->prevBtns;
 		return set->btns;
 	}
 	return 0;
