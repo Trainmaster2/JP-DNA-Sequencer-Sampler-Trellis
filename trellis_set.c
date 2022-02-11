@@ -41,9 +41,15 @@ void TrellisSet_Delete(struct TrellisSet* set)
 	if (set != NULL)
 	{
 		if (set->board1 != NULL)
+		{
 			free(set->board1);
+			set->board1 = NULL;
+		}
 		if (set->board2 != NULL)
+		{
 			free(set->board2);
+			set->board2 = NULL;
+		}
 		free(set);
 		set = NULL;
 	}
