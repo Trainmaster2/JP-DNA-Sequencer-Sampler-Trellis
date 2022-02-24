@@ -80,8 +80,8 @@ void TrellisBoard_Init(struct TrellisBoard* board)
 		// Turn on oscillator
 		__TrellisBoard_TX(board->index, 0b00100001, NULL, 0);
 
-		// Set interrupt pin to be active high
-		__TrellisBoard_TX(board->index, 0b10100011, NULL, 0);
+		// Set interrupt pin to be active low
+		__TrellisBoard_TX(board->index, 0b10100001, NULL, 0);
 
 		// Set LEDs to expected state
 		TrellisBoard_SendLEDs(board);
